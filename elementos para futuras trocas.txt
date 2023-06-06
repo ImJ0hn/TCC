@@ -1,0 +1,7 @@
+https://www.codinglabweb.com/2021/04/responsive-side-navigation-bar-in-html.html - nav bar atual original
+
+https://www.codinglabweb.com/2022/08/create-sidebar-html-css-javascript.html - nav bar top
+
+mobile index done, needs a new nav bar thougth
+
+buttons on config of tablets needs to get better
