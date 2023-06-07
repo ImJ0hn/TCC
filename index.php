@@ -7,8 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
-    <?php include_once('sql.php');
+  
+
+    <?php include_once('sql.php'); include_once('double-modal/modalExcluir.php');
     session_start();
 
     if((!isset($_SESSION['nome']) == true) and (!isset($_SESSION['senha']) == true))
@@ -21,8 +24,11 @@
     
 </head>
 <body>
+
+
   <div class="all">
   <div class="sidebar">
+    
     <div class="logo-details">
         <div class="logo_name">DevDreams</div>
         <i class='bx bx-menu' id="btn" ></i>
@@ -264,6 +270,7 @@
           <main class="grid">
 
           <?php
+          
         while($dadosUsuario = mysqli_fetch_assoc($rPedidos) and $mostrarPedido = mysqli_fetch_assoc($rPedido) and $mostrarQuantidade = mysqli_fetch_assoc($rQt_itens))
         {
 
@@ -282,7 +289,7 @@
           
           echo "<p class='pConteudo'> <a class='button-alterar' href='PagEditar/EditPedidos.php?id=$dadosUsuario[id_pedidos]'>✎</a>
 
-          <a class='btn-danger' href='deletar/scriptDelPed.php?id=$dadosUsuario[id_pedidos]'>
+          <a class='btn-danger' data-bs-toggle='modal' data-bs-target='#$dadosUsuario[id_pedidos]'>
           <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash-fill' viewBox='0 0 16 16'>
           <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z'/>
           </svg>
@@ -293,10 +300,28 @@
 
           echo "</article>";
 
-          
+          // Modal para exclusão.
+
+          echo "<div class='modal fade ' id='$dadosUsuario[id_pedidos]' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true'>
+          <div class='modal-dialog modal-dialog-centered'>
+            <div class='modal-content'>
+              <div class='modal-header'>
+                <h1 class='modal-title fs-5' id='exampleModalLabel'>Excluir</h1>
+                <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'>X</button>
+              </div>
+              <div class='modal-body'>
+                Deseja excluir o pedido de $dadosUsuario[nm_cliente] ?
+              </div>
+              <div class='modal-footer'>
+                <button type='button' class='btn-fechar' data-bs-dismiss='modal'>Fechar</button>
+                <a class='btn-deletar' href='deletar/scriptDelPed.php?id=$dadosUsuario[id_pedidos]'>Excluir</a>
+              </div>
+            </div>
+          </div>
+        </div>";
         };
-       
-      ?>  
+        // 
+      ?> 
           </main>
       </div>
     </div>

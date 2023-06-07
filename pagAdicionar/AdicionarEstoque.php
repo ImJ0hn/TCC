@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Produtos</title>
     <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../style2.css">
     <script src="config.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet"/>
     <?php include_once('../sql.php'); include_once('../scripts/ScriptEstoque.php');
@@ -169,7 +171,7 @@ while($dadosEstoque = mysqli_fetch_assoc($rEstoque))
   echo "<div class='linha-descricao'>";
 
 
-  echo "<a class='btn btn-danger' href='deletar/scriptDelEstoque.php?id=$dadosEstoque[id_estoque]'>
+  echo "<a class='btn btn-danger' data-bs-toggle='modal' data-bs-target='#$dadosEstoque[id_estoque]'>
   <svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='currentColor' class='bi bi-trash-fill' viewBox='0 0 16 16'>
   <path d='M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z'/>
   </svg>
@@ -179,6 +181,28 @@ while($dadosEstoque = mysqli_fetch_assoc($rEstoque))
   
   echo "</div>";
   
+
+  // Modal para exclusão.
+
+  echo "<div class='modal fade' id='$dadosEstoque[id_estoque]' tabindex='-1' aria-labelledby='exampleModalLabel' aria-hidden='true' style= z-index:2;>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h1 class='modal-title fs-5' id='exampleModalLabel'>Excluir</h1>
+        <button type='button' class='btn-close' data-bs-dismiss='modal' aria-label='Close'>X</button>
+      </div>
+      <div class='modal-body'>
+        Deseja excluir $dadosEstoque[nm_produto] ?
+      </div>
+      <div class='modal-footer'>
+        <button type='button' class='btn-fechar' data-bs-dismiss='modal'>Fechar</button>
+        <a class='btn-deletar' href='../deletar/scriptDelEstoque.php?id=$dadosEstoque[id_estoque]'>Excluir</a>
+      </div>
+    </div>
+  </div>
+</div>";
+
+
 };
 
 ?>

@@ -1,0 +1,55 @@
+.modal-header
+{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.modal-content
+{
+    text-align: center;
+}
+
+.btn-close
+{
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-weight: bolder;
+}
+
+.modal-footer
+{
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn-fechar
+{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    background-color: orange;
+    border: 0;
+    border-radius: 5px;
+    color: #000;
+    font-size: clamp(0.5rem, 1rem, 2rem);
+    padding: 0.70rem;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
+
+.btn-deletar
+{
+    margin-top: 20px;
+    margin-bottom: 15px;
+    background-color: red;
+    border: 0;
+    font-weight: bolder;
+    border-radius: 5px;
+    color: #000;
+    font-size: clamp(0.5rem, 1rem, 2rem);
+    padding: 0.70rem;
+    font-family: 'Roboto', sans-serif;
+    text-decoration: none;
+}
